@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.6.0.xsd">
+    <!-- Configure the database connection here -->
+    <jdbc>
+        <driver>com.mysql.jdbc.Driver</driver>
+        <url>jdbc:mysql://localhost:3306/mnf</url>
+        <user>root</user>
+        <password>123456</password>
+    </jdbc>
+    <generator>
+        <name>org.jooq.util.DefaultGenerator</name>
+        <database>
+            <name>org.jooq.util.mysql.MySQLDatabase</name>
+            <inputSchema>mnf</inputSchema>
+            <includes>.*</includes>
+            <excludes/>
+        </database>
+        <target>
+            <packageName>cn.generated</packageName>
+            <directory>target/generated-sources/jooq</directory>
+        </target>
+    </generator>
+</configuration>
