@@ -1,5 +1,9 @@
 package cn.generated;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import  java.sql.*;
+import java.util.Properties;
 import  javax.xml.transform.*;
 
 import cn.generated.tables.Vb;
@@ -15,13 +19,28 @@ public class MainTest {
 
 
     public static void main(String[] args) {
+        String driver =null;
+        String url=null;
+        String userName=null;
+        String password=null;
+        try {
+            //构造输入流,读入参数文件的内容
+            File file = new File("conf/local.properties");
+            InputStream is = new FileInputStream(file);
+            //将参数文件的内容装载到Map对象props中
+            Properties props = new Properties();
+            props.load(is);
+            driver = props.getProperty("driver");
+            url = props.getProperty("url");
+            userName = props.getProperty("username");
+            password = props.getProperty("password");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Connection conn = null;
-        String userName = "root";
-        String password = "123456";
-        String url = "jdbc:mysql://localhost:3306/mnf";
         try {
             System.out.print("1");
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName(driver).newInstance();
             conn = DriverManager.getConnection(url, userName, password);
             DSLContext create = DSL.using(conn, SQLDialect.MYSQL);
             Result<Record> result = create.select().from(VB).fetch();
