@@ -17,8 +17,8 @@ import static cn.generated.Tables.*;
  */
 public class MainTest {
 
-
     public static void main(String[] args) {
+
         String driver =null;
         String url=null;
         String userName=null;
@@ -30,10 +30,10 @@ public class MainTest {
             //将参数文件的内容装载到Map对象props中
             Properties props = new Properties();
             props.load(is);
-            driver = props.getProperty("driver");
-            url = props.getProperty("url");
-            userName = props.getProperty("username");
-            password = props.getProperty("password");
+            driver = props.getProperty("db.driver");
+            url = props.getProperty("db.url");
+            userName = props.getProperty("db.username");
+            password = props.getProperty("db.password");
         } catch (Exception e) {
             e.printStackTrace();
         }
